@@ -29,10 +29,19 @@ public class InventarioTienda {
         return "SUFICIENTE";
     }
 
+    // Si la entrada se cierra (fin de datos), termina el programa de forma controlada
+    static void verificarEntrada(Scanner sc) {
+        if (!sc.hasNextLine()) {
+            System.out.println("\nEntrada finalizada. Se cierra el programa.");
+            System.exit(0);
+        }
+    }
+
     // Lee un entero; repite hasta que sea un número válido dentro de [min, max]
     static int leerEntero(Scanner sc, String mensaje, int min, int max) {
         while (true) {
             System.out.print(mensaje);
+            verificarEntrada(sc);
             String linea = sc.nextLine().trim();
             try {
                 int valor = Integer.parseInt(linea);
@@ -50,6 +59,7 @@ public class InventarioTienda {
     static String leerTexto(Scanner sc, String mensaje) {
         while (true) {
             System.out.print(mensaje);
+            verificarEntrada(sc);
             String texto = sc.nextLine().trim();
             if (!texto.isEmpty()) {
                 return texto;
